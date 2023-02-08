@@ -1,0 +1,89 @@
+.Post{
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    background-color: var(--cardColor);
+    margin-top: 1rem;
+    border-radius: 1.0rem;
+    
+}
+
+.Post>img{
+    width: 100%;
+    max-height: 20rem;
+    object-fit: cover;
+}
+
+.postReact{
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.details{
+    display: flex;
+    flex-direction: column;
+    
+    /* margin-top: 0.5rem;
+    gap: 2px; */
+}
+
+.small{
+    font-size: smaller;
+    font-weight: normal !important;
+}
+.name-and-report{
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+}
+.Report{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 20rem;
+    object-fit: cover;
+    border-radius: 0.5rem;
+    background-color:white;
+    box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
+}
+
+
+.reportForm{
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+
+}
+.reportButton{
+    margin-top:10px ;
+    margin-bottom:20px ;
+    height: 1.8rem;
+}
+
+.edit{
+    display: flex;
+    justify-content: center;
+}
+
+.edit>input{
+    background-color:var(--inputColor);
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 13px;
+    border:none;
+    width:75%;
+    margin-right: 0.5rem;
+    outline: none;
+}
+
+
+.ps-button{
+    padding: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 12px;
+}
