@@ -6,7 +6,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { getAllPosts, removePost } from "../../Api/adminRequest";
 import moment from "moment";
-// import ReportedPost from "../ReportedPost/ReportedPost";
+import ReportedPost from "../ReportedPost/ReportedPost";
 import { toast, Toaster } from "react-hot-toast";
 
 const PostList = () => {

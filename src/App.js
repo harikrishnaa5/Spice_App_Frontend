@@ -14,6 +14,7 @@ import Admin from './Pages/Admin/Admin';
 function App() {
   const user = useSelector((state) => state.authReducer.authData);
  const admin = useSelector((state) => state.adminAuthReducer.adminAuthData);
+ console.log(process.env.REACT_APP_BASE_PORT)
   return (
     <div className="App">
       <div className="blur" style={{ top: '-18%', right: '0' }}></div>
@@ -23,11 +24,12 @@ function App() {
         <Route path="/home" element={user ?.user.verified? <Home /> : <Navigate to="../login" />} />
         <Route path='/login' element = {user?.user.verified?<Navigate to = "../home"/>:<Login/> }/>
         <Route path='/signup' element = {user?.user.verified?<Navigate to = "../home"/>:<SignUp/> }/>
-        <Route path="/profile/:id" element={user ?.user.verified? <Profile /> : <Navigate to="../login" />} />
+        <Route path="/profile" element={user ?.user.verified? <Profile /> : <Navigate to="../login" />} />
         <Route path="/chat" element={user ?.user.verified? <Chat /> : <Navigate to="../login" />} />
         {/* Admin route */}
         <Route path="/admin-login" element={admin? <Navigate to='/admin'/>: <AdminLogin />}/>
         <Route path="/admin" element={admin?<Admin />: <Navigate to='/admin-login'/>}/>
+        <Route path='*' element={<h1>Error</h1>}/>
       </Routes>
       {/* <Home /> */}
       {/* <Profile/> */}

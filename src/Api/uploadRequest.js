@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // const API = axios.create({ baseURL: 'http://localhost:5000' });
-const API = axios.create({ baseURL: process.env.BASE_PORT });
+const API = axios.create({ baseURL:process.env.REACT_APP_BASE_PORT });
 
 API.interceptors.request.use((req) => {
   if (localStorage.getItem('profile')) {
@@ -15,7 +15,7 @@ err=>{
   {
     // alert('user is blocked')
     // localStorage.clear();
-    window.location.href='/login'
+    // window.location.href='/login'
   }
 }
 )

@@ -9,7 +9,7 @@ import NotLike from "../../Image/notlike.png";
 import ComentBox from "../ComentBox/ComentBox";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
-import { deletePost, likePost, updatePost } from "../../Api/postRequest";
+import { deletePost, likePost, reportPost, updatePost } from "../../Api/postRequest";
 import { getTimelinePosts } from "../../Actions/postAction";
 const Post = ({ data, allpost }) => {
   const dispatch = useDispatch()
@@ -36,11 +36,15 @@ const Post = ({ data, allpost }) => {
 
   const handleReport = async (e) => {
     e.preventDefault();
+    setReport(false)
     const postId = data._id;
     const reportData = {
       userId: user._id,
       reason: selectedValue,
+      postId
     };
+    const response= await reportPost(reportData)
+    allpost()
   };
   const handleUpdate = async (e) => {
     e.preventDefault();
@@ -49,6 +53,7 @@ const Post = ({ data, allpost }) => {
     dispatch(getTimelinePosts(user._id));
     setEdit(false)
     setCaption(body)
+     allpost()
   }
   const handleDelete = async (e) => {
     e.preventDefault()
@@ -252,7 +257,7 @@ const Post = ({ data, allpost }) => {
         </span> 
       </div>
       <img
-        src={data.image ? process.env.REACT_APP_PUBLIC_FOLDER + data.image : ""}
+        src={data.image ? `${process.env.REACT_APP_PUBLIC_FOLDER}/${data.image}`: ""}
       />
 
       <div className="postReact">

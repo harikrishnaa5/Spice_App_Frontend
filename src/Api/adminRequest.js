@@ -1,7 +1,7 @@
 import axios from "axios"
 
 // const API = axios.create({baseURL:"http://localhost:5000"})
-const API = axios.create({ baseURL: process.env.BASE_PORT });
+const API = axios.create({ baseURL:process.env.REACT_APP_BASE_PORT });
 
 export const blockUser=(id)=>API.put(`/admin/block/${id}`);
 export const activateUser=(id)=>API.put(`/admin/activate/${id}`);

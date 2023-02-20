@@ -16,7 +16,7 @@ const ComentBox = ({ postid, allposts }) => {
     comment: ''
   });
 
-  const envData = process.env.REACT_APP_PUBLIC_FOLDER;
+  const envData = `${process.env.REACT_APP_PUBLIC_FOLDER}`;
 
   const { user } = useSelector((state) => state.authReducer.authData);
   // console.log(user, 'asdfghjklqwertyuiop');
@@ -77,8 +77,8 @@ const ComentBox = ({ postid, allposts }) => {
                   <img
                     src={
                       comment.commentBy.profilePicture
-                        ? envData + comment.commentBy.profilePicture
-                        : envData + 'profile.png'
+                        ? `${envData}/${comment.commentBy.profilePicture}`
+                        : `${envData}/ profile.png`
                     }
                     alt=""
                     className="commentUserImage"

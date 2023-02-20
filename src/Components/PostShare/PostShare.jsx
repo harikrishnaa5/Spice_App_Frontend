@@ -6,6 +6,7 @@ import { UilLocationPoint } from '@iconscout/react-unicons';
 import { UilSchedule } from '@iconscout/react-unicons';
 import { UilTimes } from '@iconscout/react-unicons';
 import * as UploadApi from '../../Api/uploadRequest';
+import { toast, Toaster } from "react-hot-toast";
 
 import { useDispatch, useSelector } from 'react-redux';
 import { uploadImg, uploadPost } from '../../Actions/uploadAction';
@@ -22,7 +23,16 @@ const PostShare = ({ showallpost }) => {
   const onImageChange = (event) => {
     if (event.target.files && event.target.files[0]) {
       let img = event.target.files[0];
-      setImage(img);
+      if(!img.name.match(/\.(jpg|jpeg|png|gif)$/)){
+        toast.warning('File should be in image format', {
+          
+      });
+      }
+      else{
+        setImage(img);
+        toast.success('Uploaded successfully')
+      }
+      
     }
   };
 
@@ -39,7 +49,7 @@ const PostShare = ({ showallpost }) => {
       userId: user._id,
       desc: description
     };
-    console.log(newPost, 'adarsh');
+    
     if (image) {
       const data = new FormData();
       const filename = Date.now() + image.name;
@@ -55,7 +65,7 @@ const PostShare = ({ showallpost }) => {
         console.log(error);
       }
     }
-    console.log(desc.current.value, 'ppp', image);
+    
     //  dispatch(uploadPost(newPost))
     if (!image && !description) return undefined;
     const res = await UploadApi.uploadPost(newPost);
@@ -66,7 +76,7 @@ const PostShare = ({ showallpost }) => {
   return (
     <div className="PostShare">
       <img
-        src={user.profilePicture ? envData + user.profilePicture : envData + 'profile.png'}
+        src={user.profilePicture ? `${envData}/${user.profilePicture}` : `${envData}/profile.png`}
         alt=""
       />
       <div>
@@ -95,7 +105,9 @@ const PostShare = ({ showallpost }) => {
             {loading ? 'uploading...' : 'Share'}
           </button>
           <div style={{ display: 'none' }}>
+            
             <input type="file" name="myImage" ref={imageRef} accept="image/png ,image/webp, image/png, image/jpg, image/jpeg" onChange={onImageChange} />
+            <Toaster/>
           </div>
         </div>
         {image && (

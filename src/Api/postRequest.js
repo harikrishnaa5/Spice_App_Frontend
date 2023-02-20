@@ -3,7 +3,7 @@ import axios from 'axios';
 // const { token } = JSON.parse(profile);
 // const API = axios.create({ baseURL: 'http://localhost:5000', headers: { authorization: token } });
 // const API = axios.create({ baseURL: 'http://localhost:5000' });
-const API = axios.create({ baseURL: process.env.BASE_PORT });
+const API = axios.create({ baseURL:process.env.REACT_APP_BASE_PORT });
 
 API.interceptors.request.use((req) => {
     if (localStorage.getItem('profile')) {
@@ -19,7 +19,7 @@ API.interceptors.request.use((req) => {
     {
       // alert('user is blocked')
       // localStorage.clear();
-      window.location.href='/login'
+      // window.location.href='/login'
     }
   }
   )
@@ -35,7 +35,7 @@ export const showPost = () => API.post('/posts/showPosts')
 
 export const getUserPost = (id) => API.get(`/posts/${id}/getUserPost`)
 
-export const reportPost = id=>API.put(`/posts/${id}`)
+export const reportPost = data=>API.put('/posts/report',data)
 
 export const deletePost = (id) => API.delete(`/posts/${id}`)
 

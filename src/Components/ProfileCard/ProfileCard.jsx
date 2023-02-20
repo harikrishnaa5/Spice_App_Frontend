@@ -1,19 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import './ProfileCard.css';
 import { useSelector } from 'react-redux';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { getUser } from '../../Api/userRequest';
 import { API } from '../../Api/chatRequest';
+import { useLocation } from 'react-router-dom';
 
 
 const ProfileCard = ({ location }) => {
- 
-  
+  const locations = useLocation()
+  const navigate = useNavigate()
   const { user } = useSelector((state) => state.authReducer.authData);
   const envData = process.env.REACT_APP_PUBLIC_FOLDER;
   const posts = useSelector((state) => state.postReducer.posts);
-  const { id } = useParams();
+  let id = null
+  if(location !=='homepage'){
+      id  = locations?.state.id
+  }
+  
   console.log(id, '--------search user id');
   const [nameSearch, setNameSearch] = useState(null);
   const [refresh, setRefresh] = useState(false);
@@ -46,28 +51,28 @@ console.log(id,"IIIIIIIIIIIIIIIIID")
       <div className="ProfileImages">
         {!nameSearch ? (
           <img
-            src={user.coverPicture ? envData + user.coverPicture : envData + 'cover.jpg'}
+            src={user.coverPicture ? `${envData}/${user.coverPicture} `: `${envData}/cover.jpg`}
             alt=""
           />
         ) : (
           <img
             src={
-              nameSearch.coverPicture ? envData + nameSearch.coverPicture : envData + 'cover.jpg'
+              nameSearch.coverPicture ? `${envData}/${nameSearch.coverPicture}` : `${envData}/cover.jpg`
             }
             alt=""
           />
         )}
         {!nameSearch ? (
           <img
-            src={user.profilePicture ? envData + user.profilePicture : envData + 'profile.png'}
+            src={user.profilePicture ? `${envData}/${user.profilePicture}` : `${envData}/profile.png`}
             alt=""
           />
         ) : (
           <img
             src={
               nameSearch.profilePicture
-                ? envData + nameSearch.profilePicture
-                : envData + 'profile.png'
+                ? `${envData}/nameSearch.profilePicture`
+                : `${envData}/profile.png`
             }
             alt=""
           />
@@ -130,9 +135,9 @@ console.log(id,"IIIIIIIIIIIIIIIIID")
         ''
       ) : (
         <span>
-          <Link style={{ textDecoration: 'none', color: 'inherit' }} to={`/profile/${user._id}`}>
+          <button onClick={() => navigate('/profile',{state: {id: user._id}})} style={{cursor: "pointer", textDecoration: 'none', color: 'inherit', borderRadius: "5px" , border: "none" }}>
             My Profile
-          </Link>
+          </button>
         </span>
       )}
     </div>

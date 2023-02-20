@@ -8,17 +8,20 @@ import * as userAPI from '../../Api/userRequest.js';
 import { logout } from '../../Actions/authAction';
 import axios from 'axios';
 import { API } from '../../Api/chatRequest';
+import { useLocation } from 'react-router-dom';
 
 const InfoCard = () => {
   const navigate = useNavigate();
+  const location = useLocation()
   const dispatch = useDispatch();
   const params = useParams();
   const [modalOpen, setmodalOpen] = useState(false);
-  const profileUserID = params.id;
+  const profileUserID = location.state.id
   const [profileUser, setProfileUser] = useState({});
   const { user } = useSelector((state) => state.authReducer.authData);
+  
 
-  const { id } = useParams();
+  const { id } = location.state
   console.log(id, '--------search user id222222222');
   const [nameSearch, setNameSearch] = useState(null);
   const [refresh, setRefresh] = useState(false);

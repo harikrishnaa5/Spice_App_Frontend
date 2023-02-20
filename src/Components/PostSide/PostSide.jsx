@@ -5,13 +5,18 @@ import { getTimelinePosts, getUserPost, showPost } from '../../Api/postRequest';
 import Posts from '../Posts/Posts';
 import PostShare from '../PostShare/PostShare';
 import './PostSide.css';
+import { useLocation } from 'react-router-dom';
 
 const PostSide = ({select}) => {
   const [post, setpost] = useState([]);
+  const location = useLocation()
   const { user } = useSelector((state) => state.authReducer.authData);
-  const { id } = useParams();
+  let id = null
+  
+    
   const showallpost = async () => {
     if (select === 'profile') {
+      id  = location.state.id
       const response = await getUserPost(id);
       
       setpost(response.data.showPost)

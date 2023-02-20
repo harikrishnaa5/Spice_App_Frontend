@@ -64,7 +64,7 @@ const LogoSearch = () => {
         return (
           <Link to = {`/profile/${users._id}` } className = "profilelink" style={{textDecoration:"none", color:"black"}} >
             <div className='singleResult'  key={users._id}>
-              <img src={users.profilePicture ? envData + users.profilePicture : envData + "profile.png"} alt=""
+              <img src={users.profilePicture ? `${envData}/${users.profilePicture}` : `${envData}/profile.png`} alt=""
                 className='resultProfilePictur' />
               <span>{users.firstname} {users.lastname}</span>
               
