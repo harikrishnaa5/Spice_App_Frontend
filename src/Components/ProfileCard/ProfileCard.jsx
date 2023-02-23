@@ -71,7 +71,7 @@ console.log(id,"IIIIIIIIIIIIIIIIID")
           <img
             src={
               nameSearch.profilePicture
-                ? `${envData}/nameSearch.profilePicture`
+                ? `${envData}/${nameSearch.profilePicture}`
                 : `${envData}/profile.png`
             }
             alt=""

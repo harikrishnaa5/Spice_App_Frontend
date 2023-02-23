@@ -3,13 +3,15 @@ import Logo from '../../Image/Letter-s-logo.png';
 import { UilSearch } from '@iconscout/react-unicons';
 import './LogoSearch.css';
 import { SearchUsers } from '../../Api/userRequest';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const LogoSearch = () => {
   const [nameSearch, setNameSearch] = useState([]);
   const [showResult, setShowResult] = useState(false);
   const [result, setResult] = useState('');
   const envData = process.env.REACT_APP_PUBLIC_FOLDER
+  const navigate = useNavigate()
   const handleChange = (e) => {
     setNameSearch(e.target.value);
   };
@@ -62,14 +64,22 @@ const LogoSearch = () => {
        <div className='searchResults'>
       {result.map((users) => {
         return (
-          <Link to = {`/profile/${users._id}` } className = "profilelink" style={{textDecoration:"none", color:"black"}} >
+          // <Link to = {`/profile/${users._id}` } className = "profilelink" style={{textDecoration:"none", color:"black"}} >
+          //   <div className='singleResult'  key={users._id}>
+          //     <img src={users.profilePicture ? `${envData}/${users.profilePicture}` : `${envData}/profile.png`} alt=""
+          //       className='resultProfilePictur' />
+          //     <span>{users.firstname} {users.lastname}</span>
+              
+          //   </div>
+          //   </Link>
+          <button onClick={() => navigate('/profile',{state: {id: users._id}})} className = "profilelink" style={{textDecoration:"none", color:"black", border: "none"}} >
             <div className='singleResult'  key={users._id}>
               <img src={users.profilePicture ? `${envData}/${users.profilePicture}` : `${envData}/profile.png`} alt=""
                 className='resultProfilePictur' />
               <span>{users.firstname} {users.lastname}</span>
               
             </div>
-            </Link>
+            </button>
            
 
           

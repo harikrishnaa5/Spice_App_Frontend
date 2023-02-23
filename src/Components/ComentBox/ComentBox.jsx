@@ -27,23 +27,24 @@ const ComentBox = ({ postid, allposts }) => {
     console.log(response.data, 'response');
     setnewMessage(response.data);
   };
-  console.log(newMessage, 'newmseesage');
+  
   useEffect(() => {
     showCommetns(postid);
   }, []);
   const validationSchema = Yup.object({
     comment: Yup.string().required('Please enter something')
   });
-  const resetFrom = () => {
-    setData({ comment: '' });
-  };
+  // const resetForm = () => {
+  //   setData({ comment: '' });
+  // };
   const formik = useFormik({
     initialValues: {
       comment: ''
     },
-    onSubmit: async (values) => {
+    onSubmit: async (values,{resetForm}) => {
       // commentpost({ values, post });
       // console.log(values);
+      resetForm({values: ''})
       const { data } = await commentPost(values, postid, userId);
       if (data) showCommetns(postid);
       allposts();

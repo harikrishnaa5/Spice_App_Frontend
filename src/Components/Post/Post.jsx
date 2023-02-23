@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { deletePost, likePost, reportPost, updatePost } from "../../Api/postRequest";
 import { getTimelinePosts } from "../../Actions/postAction";
+import { useNavigate } from 'react-router-dom';
 const Post = ({ data, allpost }) => {
   const dispatch = useDispatch()
   const { user } = useSelector((state) => state.authReducer.authData);
@@ -21,6 +22,7 @@ const Post = ({ data, allpost }) => {
   const [comment, setComent] = useState("");
    const [edit,setEdit] = useState(false);
    const[caption,setCaption] = useState(data.desc)
+   const navigate = useNavigate()
  
   const desc = useRef();
 
@@ -66,7 +68,7 @@ const Post = ({ data, allpost }) => {
         <span>
           <h4>
             <span className="name-and-report">
-              {data.userId.firstname} {data.userId.lastname}
+              <button  onClick={() =>{navigate('/profile',{state: {id: data.userId._id}});}} style={{textDecoration: "none" , border: 'none', background: "none", fontWeight: 'bold', cursor: "pointer"}}>{data.userId.firstname} {data.userId.lastname}</button>
               <Menu shadow="md" width={200}>
                 <Menu.Target>
                   <b>. . .</b>

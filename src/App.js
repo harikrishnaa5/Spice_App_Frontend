@@ -9,6 +9,7 @@ import Login from './Pages/Login/Login';
 import SignUp from './Pages/Signup/Signup';
 import AdminLogin from './Pages/Login/AdminLogin';
 import Admin from './Pages/Admin/Admin';
+import ErrorPage from './Pages/Error/ErrorPage';
 
 
 function App() {
@@ -29,7 +30,7 @@ function App() {
         {/* Admin route */}
         <Route path="/admin-login" element={admin? <Navigate to='/admin'/>: <AdminLogin />}/>
         <Route path="/admin" element={admin?<Admin />: <Navigate to='/admin-login'/>}/>
-        <Route path='*' element={<h1>Error</h1>}/>
+        <Route path='*' element={<ErrorPage/>}/>
       </Routes>
       {/* <Home /> */}
       {/* <Profile/> */}

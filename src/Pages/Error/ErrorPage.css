@@ -1,0 +1,33 @@
+body{
+    background-color: #e2edee;
+    /* height: 100%;
+    display: flex;
+    justify-content: center;
+     */
+}
+.error-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 10%;
+}
+.back-home{
+    background-color: rgb(48, 48, 243);
+    width: auto;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    height: 3rem;
+    border: none;
+    border-radius: 1.7rem;
+    font-size: large;
+    cursor: pointer;
+    margin-top: 2.5rem;
+    color: azure;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+   
+    
+}
